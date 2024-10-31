@@ -41,13 +41,15 @@
     "wait-on": "^8.0.1"
   },
   "dependencies": {
+    "ant-design-vue": "4.x",
     "electron-log": "^5.2.0",
     "electron-store": "8.1.0",
-    "electron-updater": "^6.3.9"
+    "electron-updater": "^6.3.9",
+    "vue-router": "^4.4.5"
   },
   "build": {
     "appId": "com.official-electron-vue.app",
-    "productName": "Electron Vue",
+    "productName": "Electron Vue Nightly",
     "copyright": "Copyright © 2022 ${author}",
     "publish": [
       {
