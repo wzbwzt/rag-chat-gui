@@ -19,10 +19,14 @@
 <script setup lang="ts">
 import LeftMenu from '~/components/LeftMenu.vue';
 import Header from '~/components/Header.vue';
+import { collapsedStore } from "~/store/collapse"
+import { computed } from 'vue';
 
-import { ref } from 'vue';
+const store = collapsedStore()
 
-const collapsed = ref<boolean>(false);
+const collapsed = computed(() => {
+    return store.getIsCollapsed
+})
 
 </script>
 
