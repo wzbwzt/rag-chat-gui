@@ -10,7 +10,7 @@ export enum DBTable {
   Instruction = "instruction",
 }
 
-contextBridge.exposeInMainWorld("browserWindow", {
+contextBridge.exposeInMainWorld("electronAPI", {
   versions: () => ipcRenderer.invoke("versions"),
   dbHandler: (table: DBTable, option: DBOption, data: DBData) => ipcRenderer.send("dbHandler", table, option, data),
 });

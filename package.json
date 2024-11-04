@@ -1,7 +1,7 @@
 {
   "name": "electron-vue",
   "version": "1.0.0",
-  "main": "./dist/main.js",
+  "main": "./dist/Electron/main.js",
   "license": "MIT",
   "author": "joel-wu",
   "description": "This is a sample",
@@ -49,6 +49,7 @@
     "electron-store": "8.1.0",
     "electron-updater": "^6.3.9",
     "prisma": "^5.21.1",
+    "typeorm": "^0.3.20",
     "vue-router": "^4.4.5"
   },
   "build": {

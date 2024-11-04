@@ -20,6 +20,7 @@ const collapsed = computed(() => {
 
 const handdleClick = () => {
     store.setCollapsed()
+    console.log(window.electronAPI.versions())
 }
 
 </script>
