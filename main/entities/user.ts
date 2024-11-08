@@ -1,5 +1,5 @@
 import { Entity, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, PrimaryGeneratedColumn, Column } from "typeorm";
-
+import { KnowledgeBase } from "./knowledgeBase";
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()

@@ -1,6 +1,6 @@
 export interface IElectronAPI {
   versions: () => Promise<any>;
-  pingpang: () => Promise<string>;
+  insert: (data: any) => Promise<any>;
 }
 
 declare global {

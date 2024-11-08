@@ -3,8 +3,7 @@ import path from "path";
 import { isDev } from "./config";
 import { appConfig } from "./ElectronStore/Configuration";
 import AppUpdater from "./AutoUpdate";
-import { DBData, DBOption, DBTable } from "./preload";
-import prisma from "../utils/prisma";
+import { AppDataSource, InstructionCtl } from "./db/index";
 
 async function createWindow() {
   const { width, height } = screen.getPrimaryDisplay().workAreaSize;
@@ -48,11 +47,30 @@ async function createWindow() {
   }
 }
 
+//initialize database
+AppDataSource.initialize()
+  .then(() => {
+    console.log("Database initialized successfully!");
+  })
+  .catch((err) => {
+    console.error("Error during Data Source initialization", err);
+    process.exit(1);
+  });
+
+function dbHandler() {
+  ipcMain.handle("insert.instruction", async (e: Electron.IpcMainInvokeEvent, data: any) => {
+    const res = await InstructionCtl.create(data);
+    console.log("Instruction inserted", res);
+    return res;
+  });
+}
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(async () => {
-  // ipcMain.on("dbHandler", dbHandler);
+  dbHandler();
+
   ipcMain.handle("versions", () => {
     return {
       node: process.versions.chrome,
@@ -88,20 +106,3 @@ app.on("window-all-closed", () => {
     app.quit();
   }
 });
-import { KnowledgeBaseFile, KnowledgeBase, User, Instruction } from "@prisma/client";
-const dbHandler = async <T extends KnowledgeBaseFile | KnowledgeBase | User | Instruction>(event: Electron.IpcMainEvent, table: DBTable, action: DBOption, data: T) => {
-  switch (action) {
-    case "create":
-      const res = await (prisma[table] as any).create({ data: { ...data } });
-      console.log("create: ", res);
-      break;
-    case "update":
-      break;
-    case "read":
-      break;
-    case "delete":
-      break;
-    default:
-      console.log("Invalid action");
-  }
-};

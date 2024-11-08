@@ -1,4 +1,5 @@
 import { Entity, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, PrimaryGeneratedColumn, Column } from "typeorm";
+import { KnowledgeBaseFile } from "./knowledgeBaseFile";
 
 @Entity()
 export class KnowledgeBase {
@@ -11,9 +12,9 @@ export class KnowledgeBase {
   @Column()
   description: string;
   @Column()
-  created: DateTime;
+  created: Date;
   @Column()
-  updated: DateTime;
+  updated: Date;
   @Column({ default: true })
   is_public: boolean;
   @Column()

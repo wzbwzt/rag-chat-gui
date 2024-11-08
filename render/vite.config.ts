@@ -12,7 +12,7 @@ export default defineConfig(({ mode }) => ({
   plugins: [vue()],
   server: {
     port: 3000,
-    host: "0.0.0.0",
+    // host: "0.0.0.0",
   },
   resolve: {
     alias: [
